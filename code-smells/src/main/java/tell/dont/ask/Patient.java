@@ -20,7 +20,7 @@ public class Patient {
 
     public void remindViaEmail(EmailService emailService) {
         if (this.hasEmailAddress()) {
-            emailService.emailReminderTo(email);
+            email.remind(emailService);
         }
     }
 

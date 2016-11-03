@@ -13,7 +13,7 @@ import tell.dont.ask.TextMessageService;
 
 
 public class PatientReminderTest {
-    private static final EmailAddress EMAIL_ADDRESS = new EmailAddress("an@email.address");
+    private static final String EMAIL_ADDRESS = "an@email.address";
     private static final String PHONE_NUMBER = "07950518195";
 
     private final Patient emailPatient = new Patient();
@@ -27,7 +27,7 @@ public class PatientReminderTest {
     @Before public void
     setup() {
         phonePatient.setPhoneNumber(PHONE_NUMBER);
-        emailPatient.setEmailAddress(EMAIL_ADDRESS);
+        emailPatient.setEmailAddress(new EmailAddress(EMAIL_ADDRESS));
     }
 
     @Test public void
@@ -45,7 +45,7 @@ public class PatientReminderTest {
     @Test public void
     a_patient_with_no_email_address_does_not_get_an_email() {
         reminder.remind(phonePatient);
-        verify(emailService, never()).emailReminderTo(new EmailAddress(Mockito.anyString()));
+        verify(emailService, never()).emailReminderTo(Mockito.anyString());
     }
 
     @Test public void
