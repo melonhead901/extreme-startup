@@ -4,6 +4,7 @@ package tell.dont.ask;
  * Created by rchew on 11/3/16.
  */
 public class PhoneNumber {
+
     private final String phoneNumber;
 
     public PhoneNumber(String phoneNumber) {
@@ -18,10 +19,18 @@ public class PhoneNumber {
         return PhoneNumberUtil.isMobileNumber(phoneNumber);
     }
 
+    public void sendTextReminder(TextMessageService phoneService) {
+        phoneService.sendTextReminderTo(phoneNumber);
+    }
+
+    public void callWithReminder(TextMessageService phoneService) {
+        phoneService.callWithReminder(phoneNumber);
+    }
+
     /**
      * Created by rchew on 11/3/16.
      */
-    public static class PhoneNumberUtil {
+    private static class PhoneNumberUtil {
 
         private static final String MOBILE_PHONE_PREFIX = "07";
         private static final int PHONE_NUMBER_FULL_LENGTH = 11;
