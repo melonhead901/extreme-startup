@@ -3,7 +3,6 @@ package tell.dont.ask;
 public class Patient {
 
     private EmailAddress email;
-    private String phone;
     private PhoneNumber phoneNumber;
 
     public void setEmailAddress(EmailAddress email) {
@@ -11,7 +10,6 @@ public class Patient {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phone = phoneNumber;
         this.phoneNumber = new PhoneNumber(phoneNumber);
         
     }
@@ -27,7 +25,6 @@ public class Patient {
     }
 
     public void remindViaPhone(TextMessageService phoneService) {
-        // this.phoneNumber = new PhoneNumber(this.phone);
         if (this.phoneNumber != null) {
             if (this.phoneNumber.isValid()) {
                 if (this.phoneNumber.isMobile()) {
@@ -37,14 +34,5 @@ public class Patient {
                 }
             }
         }
-        // String phoneNumber = this.getPhoneNumber();
-
-        // if(PhoneNumberUtil.isValidPhoneNumber(phoneNumber)) {
-        //     if(PhoneNumberUtil.isMobileNumber(phoneNumber)) {
-        //         phoneService.sendTextReminderTo(phoneNumber);
-        //     } else {
-        //         phoneService.callWithReminder(phoneNumber);
-        //     }
-        // }
     }
 }
