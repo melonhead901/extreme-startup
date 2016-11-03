@@ -22,4 +22,25 @@ public class Patient {
         return phoneNumber;
     }
 
+    public void remindViaEmail(EmailService emailService) {
+        if (this.hasEmailAddress()) {
+            emailService.emailReminderTo(email);
+        }
+    }
+
+    private boolean hasEmailAddress() {
+        return (this.email != null);
+    }
+
+    public void remindViaPhone(TextMessageService phoneService) {
+        String phoneNumber = this.getPhoneNumber();
+
+        if(PhoneNumberUtil.isValidPhoneNumber(phoneNumber)) {
+            if(PhoneNumberUtil.isMobileNumber(phoneNumber)) {
+                phoneService.sendTextReminderTo(phoneNumber);
+            } else {
+                phoneService.callWithReminder(phoneNumber);
+            }
+        }
+    }
 }

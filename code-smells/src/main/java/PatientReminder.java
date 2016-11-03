@@ -13,36 +13,13 @@ public class PatientReminder {
         this.phoneService = phoneService;
     }
     
-    // Reminds a patient
     public void remind(Patient patient) {
-        // Email the patient if they have an email address
-        String emailAddress = patient.getEmailAddress();
-        
-        // Email addresses are null when the patient doesn't have one
-        if(emailAddress != null) {
-            emailService.emailReminderTo(emailAddress);
-        }
-        
+        patient.remindViaEmail(emailService);
+
+
         // Text a patient if they have a mobile, otherwise ring them
-        String phoneNumber = patient.getPhoneNumber();
-
-        if(isValidPhoneNumber(phoneNumber)) {
-            if(isMobileNumber(phoneNumber)) {
-                phoneService.sendTextReminderTo(phoneNumber);
-            } else {
-                phoneService.callWithReminder(phoneNumber);
-            }
-        }
+        patient.remindViaPhone(phoneService);
     }
 
-    private boolean isMobileNumber(String phoneNumber) {
-        return phoneNumber.startsWith("07");
-    }
-
-    private boolean isValidPhoneNumber(String phoneNumber) {
-        // Phone numbers are null when teh patient doesn't have one
-        return phoneNumber != null 
-            && phoneNumber.length() == 11;
-    }
 
 }

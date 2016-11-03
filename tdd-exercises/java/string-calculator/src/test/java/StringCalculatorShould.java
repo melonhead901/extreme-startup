@@ -3,6 +3,8 @@
  */
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -40,6 +42,11 @@ public class StringCalculatorShould {
             sum += i;
             assertThat(calculator.calculate(s), is(sum));
         }
+    }
+
+    @Test
+    public void return_sum_with_different_delimiters() {
+
     }
 
 
