@@ -1,48 +1,38 @@
 package tell.dont.ask;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Created by rchew on 11/3/16.
  */
 public class PhoneNumber {
 
     private final String phoneNumber;
+    private static final int PHONE_NUMBER_FULL_LENGTH = 11;
 
     public PhoneNumber(String phoneNumber) {
+        checkNotNull(phoneNumber);
+        assert(phoneNumber.length() == PHONE_NUMBER_FULL_LENGTH);
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isValid() {
-        return PhoneNumberUtil.isValidPhoneNumber(phoneNumber);
-    }
-
-    public boolean isMobile() {
+    private boolean isMobile() {
         return PhoneNumberUtil.isMobileNumber(phoneNumber);
     }
 
-    public void sendTextReminder(TextMessageService phoneService) {
+    private void sendTextReminder(TextMessageService phoneService) {
         phoneService.sendTextReminderTo(phoneNumber);
     }
 
-    public void callWithReminder(TextMessageService phoneService) {
+    private void callWithReminder(TextMessageService phoneService) {
         phoneService.callWithReminder(phoneNumber);
     }
 
-    /**
-     * Created by rchew on 11/3/16.
-     */
-    private static class PhoneNumberUtil {
-
-        private static final String MOBILE_PHONE_PREFIX = "07";
-        private static final int PHONE_NUMBER_FULL_LENGTH = 11;
-
-        private static boolean isMobileNumber(String phoneNumber) {
-            return phoneNumber.startsWith(MOBILE_PHONE_PREFIX);
-        }
-
-        private static boolean isValidPhoneNumber(String phoneNumber) {
-            // Phone numbers are null when teh patient doesn't have one
-            return phoneNumber != null
-                    && phoneNumber.length() == PHONE_NUMBER_FULL_LENGTH;
-        }
+    public void remind(TextMessageService phoneService) {
+            if (isMobile()) {
+                sendTextReminder(phoneService);
+            } else {
+                callWithReminder(phoneService);
+            }
     }
 }

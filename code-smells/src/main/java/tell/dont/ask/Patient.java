@@ -1,5 +1,7 @@
 package tell.dont.ask;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class Patient {
 
     private EmailAddress email;
@@ -25,14 +27,8 @@ public class Patient {
     }
 
     public void remindViaPhone(TextMessageService phoneService) {
-        if (this.phoneNumber != null) {
-            if (this.phoneNumber.isValid()) {
-                if (this.phoneNumber.isMobile()) {
-                    this.phoneNumber.sendTextReminder(phoneService);
-                } else {
-                    this.phoneNumber.callWithReminder(phoneService);
-                }
-            }
+        if (phoneNumber != null) {
+            this.phoneNumber.remind(phoneService);
         }
     }
 }
