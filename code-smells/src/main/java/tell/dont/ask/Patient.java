@@ -2,10 +2,10 @@ package tell.dont.ask;
 
 public class Patient {
 
-    private String email;
+    private EmailAddress email;
     private String phoneNumber;
 
-    public void setEmailAddress(String email) {
+    public void setEmailAddress(EmailAddress email) {
         this.email = email;
     }
 

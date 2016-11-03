@@ -6,13 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import tell.dont.ask.EmailAddress;
 import tell.dont.ask.EmailService;
 import tell.dont.ask.Patient;
 import tell.dont.ask.TextMessageService;
 
 
 public class PatientReminderTest {
-    private static final String EMAIL_ADDRESS = "an@email.address";
+    private static final EmailAddress EMAIL_ADDRESS = new EmailAddress("an@email.address");
     private static final String PHONE_NUMBER = "07950518195";
 
     private final Patient emailPatient = new Patient();
@@ -44,7 +45,7 @@ public class PatientReminderTest {
     @Test public void
     a_patient_with_no_email_address_does_not_get_an_email() {
         reminder.remind(phonePatient);
-        verify(emailService, never()).emailReminderTo(Mockito.anyString());
+        verify(emailService, never()).emailReminderTo(new EmailAddress(Mockito.anyString()));
     }
 
     @Test public void
