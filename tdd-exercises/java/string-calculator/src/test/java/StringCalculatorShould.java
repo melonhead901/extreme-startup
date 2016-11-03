@@ -21,4 +21,9 @@ public class StringCalculatorShould {
         assertThat(calculator.calculate("1"), is(1));
     }
 
+    @Test
+    public void return_two_for_string_two() {
+        assertThat(calculator.calculate("2"), is(2));
+    }
+
 }
