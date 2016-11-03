@@ -9,10 +9,6 @@ public class Patient {
         this.email = email;
     }
 
-    public String getEmailAddress() {
-        return email;
-    }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         

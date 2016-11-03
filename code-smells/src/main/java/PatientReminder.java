@@ -16,8 +16,6 @@ public class PatientReminder {
     public void remind(Patient patient) {
         patient.remindViaEmail(emailService);
 
-
-        // Text a patient if they have a mobile, otherwise ring them
         patient.remindViaPhone(phoneService);
     }
 
