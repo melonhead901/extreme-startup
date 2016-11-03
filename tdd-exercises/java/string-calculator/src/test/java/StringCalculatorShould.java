@@ -26,4 +26,10 @@ public class StringCalculatorShould {
         assertThat(calculator.calculate("2"), is(2));
     }
 
+    @Test
+    public void return_sum_for_two_nums() {
+        assertThat(calculator.calculate("1,2"), is(3));
+    }
+
+
 }
