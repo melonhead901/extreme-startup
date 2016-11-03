@@ -31,5 +31,16 @@ public class StringCalculatorShould {
         assertThat(calculator.calculate("1,2"), is(3));
     }
 
+    @Test
+    public void return_sum_for_unknown_num_of_nums() {
+        String s = "0";
+        int sum = 0;
+        for(int i = 1; i < 101; i++) {
+            s = s.concat("," + Integer.toString(i));
+            sum += i;
+            assertThat(calculator.calculate(s), is(sum));
+        }
+    }
+
 
 }
