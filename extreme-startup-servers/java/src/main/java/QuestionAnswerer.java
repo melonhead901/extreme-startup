@@ -42,9 +42,11 @@ public class QuestionAnswerer {
             ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
-                out = squareAndCube(question.concat(splitQuery[1]));
+                out = squareAndCube(question.concat(splitQuery[2]));
             } else if (question.contains("prime")) {
-                out = isPrime(question.concat(splitQuery[1]));
+                out = isPrime(question.concat(splitQuery[2]));
+            } else if (question.contains("power")) {
+                out = power(question.concat(splitQuery[2]));
             }
 
 
@@ -72,6 +74,19 @@ public class QuestionAnswerer {
         return out;
     }
 
+    private String power(String line) {
+        String[] split = line.split(" |,");
+        for (String str : split) {
+            try {
+                if (new BigInteger(str).isProbablePrime(10)) {
+                }
+            } catch (Exception expected) {
+
+            }
+        }
+        return "none";
+    }
+
     private String doSubtraction(String query) {
         return "none";
     }
@@ -82,6 +97,7 @@ public class QuestionAnswerer {
         for (String str : split) {
             try {
                 if (new BigInteger(str).isProbablePrime(10)) {
+                    return str;
                 }
             } catch (Exception expected) {
 
@@ -113,7 +129,12 @@ public class QuestionAnswerer {
 
     public String fibo(String line) {
         String[] str = line.split("[a-zA-Z, :]");
-       int fiboNum = Integer.valueOf(str[0]);
+       int fiboNum = 0;
+        for (String s : str) {
+            if (s.length() > 0) {
+                fiboNum = Integer.valueOf(s);
+            }
+        }
 
         int first = 1;
         int second = 1;
