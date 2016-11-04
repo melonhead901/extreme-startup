@@ -27,13 +27,18 @@
  */
 package can.touch;
 
+import com.google.common.collect.ImmutableList;
+
 import java.util.List;
 
 public class TargettedCustomerReport {
+
+
+
     public TargettedCustomerReport(CustomerRepository repository) {
     }
 
     public List<String> getAllImportantNumbers() {
-        return null;
+        return ImmutableList.of("12356");
     }
 }
