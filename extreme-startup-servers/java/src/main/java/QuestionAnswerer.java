@@ -8,6 +8,17 @@ public class QuestionAnswerer {
         if (query == null) {
             out = "received null query";
         } else if (query.contains(":")) {
+
+            List<Integer> intArgs = new ArrayList<>();
+            for (String word : query.split(" |,|:")) {
+                try {
+                    intArgs.add(Integer.valueOf(word));
+
+                } catch (Exception e) {
+
+                }
+            }
+
             String[] splitQuery = query.split(":");
             String queryHash = splitQuery[0];
             String question = splitQuery[1].trim();
@@ -78,10 +89,12 @@ public class QuestionAnswerer {
 
 
     public String isPrime(String line) {
+        System.out.println(line);
         String[] split = line.split(" |,");
         for (String str : split) {
             try {
                 if (new BigInteger(str).isProbablePrime(10)) {
+                    return str;
                 }
             } catch (Exception expected) {
 
@@ -112,17 +125,20 @@ public class QuestionAnswerer {
     }
 
     public String fibo(String line) {
-        String[] str = line.split("[a-zA-Z, :]");
-       int fiboNum = Integer.valueOf(str[0]);
+    //    System.out.println(out);
+    //    String[] str = line.split("[a-zA-Z, :]");
+    //   int fiboNum = Integer.valueOf(str[0]);
 
-        int first = 1;
-        int second = 1;
-        for (int i = 2; i < fiboNum; i++) {
-            int temp = first;
-            first = second;
-            second = first + temp;
-        }
-        return second + "";
+    //    int first = 1;
+    //    int second = 1;
+    //    for (int i = 2; i < fiboNum; i++) {
+    //        int temp = first;
+    //        first = second;
+    //        second = first + temp;
+    //    }
+
+        return "fibo";
+    //     return second + "";
     }
 
     /// END KELLEN
