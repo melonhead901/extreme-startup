@@ -59,4 +59,17 @@ public class QuestionAnswerer {
         }
         return sum + "";
     }
+
+    public String doMultiplication(String line) {
+        String[] split = line.split(" ");
+        int prod = 1;
+        for (String str : split) {
+            try {
+                prod *= Integer.valueOf(str);
+            } catch (NumberFormatException expected) {
+
+            }
+        }
+        return prod + "";
+    }
 }
