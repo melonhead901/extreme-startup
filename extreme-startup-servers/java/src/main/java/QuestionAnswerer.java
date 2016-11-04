@@ -47,16 +47,16 @@ public class QuestionAnswerer {
 
     /// END KELLEN
 
-     public String doAddition(String line) {
-                String[] split = line.split(" ");
-                int sum = 0;
-                for (String str : split) {
-                    try {
-                        sum += Integer.valueOf(str);
-                    } catch (NumberFormatException expected) {
+    public String doAddition(String line) {
+        String[] split = line.split(" ");
+        int sum = 0;
+        for (String str : split) {
+            try {
+                sum += Integer.valueOf(str);
+            } catch (NumberFormatException expected) {
 
-                    }
-                }
-                return sum + "";
             }
+        }
+        return sum + "";
+    }
 }
