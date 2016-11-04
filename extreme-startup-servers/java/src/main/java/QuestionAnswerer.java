@@ -31,6 +31,10 @@ public class QuestionAnswerer {
                 out = doAddition(question);
             }
 
+            ///// KELLEN
+
+
+            ///// END KELLEN
         } else {
             out = String.format("Unknown query: '%s'", query);
         }
@@ -38,6 +42,11 @@ public class QuestionAnswerer {
         System.out.println(out);
         return out;
     }
+
+    /// KELLEN
+
+    /// END KELLEN
+
      public String doAddition(String line) {
                 String[] split = line.split(" ");
                 int sum = 0;
