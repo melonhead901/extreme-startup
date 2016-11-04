@@ -38,11 +38,11 @@ public class QuestionAnswerer {
                 ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
-                out = squareAndCube(question);
+                out = squareAndCube(query);
             }
 
             else if (question.contains("prime")) {
-                out =  isPrime(question);
+                out =  isPrime(query);
             }
 
 
@@ -57,7 +57,7 @@ public class QuestionAnswerer {
                         out = "peseta";
                     }
                 }
-            } else if (question.contains("where")) {
+            } else if (question.contains("which")) {
                 if (question.contains("Eiffel")) {
                     out = "Paris";
                 }
