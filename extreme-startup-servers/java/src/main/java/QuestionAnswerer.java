@@ -37,7 +37,7 @@ public class QuestionAnswerer {
                 ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
-                return squareAndCube(question);
+                return squareAndCube(question.concat(splitQuery[2]));
             }
 
 
