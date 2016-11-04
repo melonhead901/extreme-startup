@@ -37,14 +37,12 @@ public class QuestionAnswerer {
             }
 
 
-                ///// KELLEN
+            ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
                 out = squareAndCube(question.concat(splitQuery[1]));
-            }
-
-            else if (question.contains("prime")) {
-                out =  isPrime(question.concat(splitQuery[1]));
+            } else if (question.contains("prime")) {
+                out = isPrime(question.concat(splitQuery[1]));
             }
 
 
@@ -77,13 +75,12 @@ public class QuestionAnswerer {
     }
 
 
-
     private String isPrime(String line) {
         String[] split = line.split(" |,");
         for (String str : split) {
             try {
                 if (new BigInteger(str).isProbablePrime(10)) {
-                   return str;
+                    return str;
                 }
             } catch (Exception expected) {
 
@@ -100,8 +97,8 @@ public class QuestionAnswerer {
         for (String str : split) {
             try {
                 int num = Integer.valueOf(str);
-                int sqet = (int)Math.sqrt(num);
-                int cuberoot = (int)Math.cbrt(num);
+                int sqet = (int) Math.sqrt(num);
+                int cuberoot = (int) Math.cbrt(num);
                 if (((sqet * sqet) == num) && ((cuberoot * cuberoot * cuberoot) == num)) {
                     return num + "";
                 }
