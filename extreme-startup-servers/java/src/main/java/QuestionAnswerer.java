@@ -32,6 +32,8 @@ public class QuestionAnswerer {
                 out = doAddition(query);
             } else if (query.contains("multiplied by")) {
                 out = doMultiplication(query);
+            } else if (query.contains("Fibonacci")) {
+                out = fibo(query);
             }
 
 
@@ -55,11 +57,11 @@ public class QuestionAnswerer {
         return out;
     }
 
-    private String isPrime(String line) {
-        String[] split = line.split(" ");
+    public String isPrime(String line) {
+        String[] split = line.split(" |,");
         for (String str : split) {
             try {
-                if (new BigInteger(str).isProbablePrime(5)) {
+                if (new BigInteger(str).isProbablePrime(10)) {
                    return str;
                 }
             } catch (Exception expected) {
@@ -73,7 +75,7 @@ public class QuestionAnswerer {
 
 
     public String squareAndCube(String line) {
-        String[] split = line.split(" ");
+        String[] split = line.split(" |,");
         for (String str : split) {
             try {
                 int num = Integer.valueOf(str);
@@ -88,6 +90,20 @@ public class QuestionAnswerer {
         }
         return "none";
 
+    }
+
+    public String fibo(String line) {
+        String[] str = line.split("[a-zA-Z, :]");
+       int fiboNum = Integer.valueOf(str[0]);
+
+        int first = 1;
+        int second = 1;
+        for (int i = 2; i < fiboNum; i++) {
+            int temp = first;
+            first = second;
+            second = first + temp;
+        }
+        return second + "";
     }
 
     /// END KELLEN
