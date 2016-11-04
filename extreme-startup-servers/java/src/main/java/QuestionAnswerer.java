@@ -29,9 +29,12 @@ public class QuestionAnswerer {
                 }
             } else if (question.contains("plus")) {
                 out = doAddition(question);
+            } else if (question.contains("multiplied by")) {
+                out = doMultiplication(question);
             }
 
-            ///// KELLEN
+
+                ///// KELLEN
 
 
             ///// END KELLEN
