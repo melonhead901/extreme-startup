@@ -42,9 +42,9 @@ public class QuestionAnswerer {
             ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
-                out = squareAndCube(question.concat(splitQuery[1]));
+                out = squareAndCube(question.concat(splitQuery[2]));
             } else if (question.contains("prime")) {
-                out = isPrime(question.concat(splitQuery[1]));
+                out = isPrime(question.concat(splitQuery[2]));
             }
 
 
