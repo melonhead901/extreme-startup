@@ -33,6 +33,10 @@ public class QuestionAnswerer {
 
             ///// KELLEN
 
+            else if (question.contains("cube") && question.contains("square")) {
+                return squareAndCube(question);
+            }
+
 
             ///// END KELLEN
         } else {
@@ -44,6 +48,25 @@ public class QuestionAnswerer {
     }
 
     /// KELLEN
+
+
+    public String squareAndCube(String line) {
+        String[] split = line.split(" ");
+        for (String str : split) {
+            try {
+                int num = Integer.valueOf(str);
+                int sqet = (int)Math.sqrt(num);
+                int cuberoot = (int)Math.cbrt(num);
+                if (((sqet * sqet) == num) && ((cuberoot * cuberoot * cuberoot) == num)) {
+                    return num + "";
+                }
+            } catch (NumberFormatException expected) {
+
+            }
+        }
+        return "none";
+
+    }
 
     /// END KELLEN
 
