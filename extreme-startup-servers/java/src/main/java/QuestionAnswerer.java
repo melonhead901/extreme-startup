@@ -72,6 +72,11 @@ public class QuestionAnswerer {
     }
 
     /// END KELLEN
+    public String doJamesBond(String line) {
+        if (line.contains("Dr No")) {
+            return "Sean Connery";
+        }
+    }
 
     public String doAddition(String line) {
         String[] split = line.split(" ");
