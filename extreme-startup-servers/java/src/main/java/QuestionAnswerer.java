@@ -51,6 +51,16 @@ public class QuestionAnswerer {
                 if (question.contains("James Bond")) {
                     out = doJamesBond(query);
                 }
+            } else if (question.contains("what")) {
+                if (question.contains("Spain")) {
+                    if (question.contains("Euro")) {
+                        out = "peseta";
+                    }
+                }
+            } else if (question.contains("where")) {
+                if (question.contains("Eiffel")) {
+                    out = "Paris";
+                }
             }
         } else {
             out = String.format("Unknown query: '%s'", query);
