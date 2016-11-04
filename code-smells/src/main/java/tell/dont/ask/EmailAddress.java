@@ -10,10 +10,6 @@ public class EmailAddress {
         this.email = email;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void remind(EmailService emailService) {
         emailService.emailReminderTo(email);
     }

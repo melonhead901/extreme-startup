@@ -9,6 +9,7 @@ public class PhoneNumber {
 
     private final String phoneNumber;
     private static final int PHONE_NUMBER_FULL_LENGTH = 11;
+    private static final String MOBILE_PHONE_PREFIX = "07";
 
     public PhoneNumber(String phoneNumber) {
         checkNotNull(phoneNumber);
@@ -17,7 +18,7 @@ public class PhoneNumber {
     }
 
     private boolean isMobile() {
-        return PhoneNumberUtil.isMobileNumber(phoneNumber);
+        return phoneNumber.startsWith(MOBILE_PHONE_PREFIX);
     }
 
     private void sendTextReminder(TextMessageService phoneService) {

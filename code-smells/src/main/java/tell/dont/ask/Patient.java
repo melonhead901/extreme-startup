@@ -1,7 +1,5 @@
 package tell.dont.ask;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class Patient {
 
     private EmailAddress email;
@@ -13,7 +11,7 @@ public class Patient {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = new PhoneNumber(phoneNumber);
-        
+
     }
 
     public void remindViaEmail(EmailService emailService) {
