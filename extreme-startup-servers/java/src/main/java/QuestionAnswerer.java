@@ -29,9 +29,9 @@ public class QuestionAnswerer {
                     out = Integer.toString(max);
                 }
             } else if (question.contains("plus")) {
-                out = doAddition(question);
-            } else if (question.contains("multiplied by")) {
-                out = doMultiplication(question);
+                out = doAddition(query);
+            } else if (query.contains("multiplied by")) {
+                out = doMultiplication(query);
             }
 
 
@@ -95,6 +95,7 @@ public class QuestionAnswerer {
         if (line.contains("Dr No")) {
             return "Sean Connery";
         }
+        return "foobar";
     }
 
     public String doAddition(String line) {
