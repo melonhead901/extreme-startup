@@ -28,6 +28,8 @@ public class QuestionAnswerer {
                     }
                     out = Integer.toString(max);
                 }
+            } else if (question.contains("minus")) {
+                out = doSubtraction(query);
             } else if (question.contains("plus")) {
                 out = doAddition(query);
             } else if (query.contains("multiplied by")) {
@@ -37,18 +39,31 @@ public class QuestionAnswerer {
             }
 
 
-                ///// KELLEN
+            ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
-                out = squareAndCube(question);
-            }
-
-            else if (question.contains("prime")) {
-                out =  isPrime(question);
+                out = squareAndCube(question.concat(splitQuery[1]));
+            } else if (question.contains("prime")) {
+                out = isPrime(question.concat(splitQuery[1]));
             }
 
 
             ///// END KELLEN
+            else if (question.contains("who")) {
+                if (question.contains("James Bond")) {
+                    out = doJamesBond(query);
+                }
+            } else if (question.contains("what")) {
+                if (question.contains("Spain")) {
+                    if (question.contains("Euro")) {
+                        out = "peseta";
+                    }
+                }
+            } else if (question.contains("which")) {
+                if (question.contains("Eiffel")) {
+                    out = "Paris";
+                }
+            }
         } else {
             out = String.format("Unknown query: '%s'", query);
         }
@@ -57,12 +72,16 @@ public class QuestionAnswerer {
         return out;
     }
 
+    private String doSubtraction(String query) {
+        return "none";
+    }
+
+
     public String isPrime(String line) {
         String[] split = line.split(" |,");
         for (String str : split) {
             try {
                 if (new BigInteger(str).isProbablePrime(10)) {
-                   return str;
                 }
             } catch (Exception expected) {
 
@@ -79,8 +98,8 @@ public class QuestionAnswerer {
         for (String str : split) {
             try {
                 int num = Integer.valueOf(str);
-                int sqet = (int)Math.sqrt(num);
-                int cuberoot = (int)Math.cbrt(num);
+                int sqet = (int) Math.sqrt(num);
+                int cuberoot = (int) Math.cbrt(num);
                 if (((sqet * sqet) == num) && ((cuberoot * cuberoot * cuberoot) == num)) {
                     return num + "";
                 }
