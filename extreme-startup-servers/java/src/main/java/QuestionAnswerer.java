@@ -28,6 +28,8 @@ public class QuestionAnswerer {
                     }
                     out = Integer.toString(max);
                 }
+            } else if (question.contains("minus")) {
+                out = doSubtraction(query);
             } else if (question.contains("plus")) {
                 out = doAddition(query);
             } else if (query.contains("multiplied by")) {
@@ -38,11 +40,11 @@ public class QuestionAnswerer {
                 ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
-                out = squareAndCube(query);
+                out = squareAndCube(question.concat(splitQuery[1]));
             }
 
             else if (question.contains("prime")) {
-                out =  isPrime(query);
+                out =  isPrime(question.concat(splitQuery[1]));
             }
 
 
@@ -70,8 +72,14 @@ public class QuestionAnswerer {
         return out;
     }
 
+    private String doSubtraction(String query) {
+        return "none";
+    }
+
+
+
     private String isPrime(String line) {
-        String[] split = line.split(" ");
+        String[] split = line.split(" |,");
         for (String str : split) {
             try {
                 if (new BigInteger(str).isProbablePrime(10)) {
@@ -88,7 +96,7 @@ public class QuestionAnswerer {
 
 
     public String squareAndCube(String line) {
-        String[] split = line.split(" ");
+        String[] split = line.split(" |,");
         for (String str : split) {
             try {
                 int num = Integer.valueOf(str);
