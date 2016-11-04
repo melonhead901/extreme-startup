@@ -30,22 +30,57 @@ import can.touch.ContactDetail;
 import can.touch.CustomerRepository;
 import can.touch.TargettedCustomerReport;
 import com.google.common.collect.ImmutableList;
+import com.palantir.docker.compose.DockerComposeRule;
+import com.palantir.docker.compose.logging.LogDirectory;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
 
+import static com.google.common.base.Optional.absent;
+import static com.palantir.docker.compose.configuration.ShutdownStrategy.AGGRESSIVE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.not;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TargettedCustomerReportShould {
-    private static final ContactDetail ANNAS_NUMBER = new ContactDetail("12356");
+    private static final ContactDetail ANNAS_NUMBER = new ContactDetail("12356", "Anna");
+    private static final ContactDetail BOBS_NUMBER = new ContactDetail("32165", "Bob");
+    private static final ContactDetail JEFFS_NUMBER = new ContactDetail("11111", "Jeff");
 
-    CustomerRepository repository = mock(CustomerRepository.class);
+
+    CustomerRepository repository = CustomerRepository.createDefault();
     TargettedCustomerReport report = new TargettedCustomerReport(repository);
+
+    @BeforeClass
+
+
+    @ClassRule
+    public static DockerComposeRule docker = DockerComposeRule.builder()
+            .file("docker-compose.yml")
+            .saveLogsTo(LogDirectory.circleAwareLogDirectory(RealCustomerRepositoryShould.class))
+            .shutdownStrategy(AGGRESSIVE)
+            .build();
+
+    @Test public void
+    dont_find_jeffs_number() {
+        //when(repository.getAllContactDetails()).thenReturn(ImmutableList.of(JEFFS_NUMBER));
+
+        assertThat(report.getAllImportantNumbers(), not(hasItem(JEFFS_NUMBER.getPhoneNumber())));
+    }
+
+    @Test public void
+    find_bobs_number() {
+        // when(repository.getAllContactDetails()).thenReturn(ImmutableList.of(BOBS_NUMBER));
+
+        assertThat(report.getAllImportantNumbers(), contains(BOBS_NUMBER.getPhoneNumber()));
+    }
 
     @Test public void
     find_annas_number() {
-        when(repository.getAllContactDetails()).thenReturn(ImmutableList.of(ANNAS_NUMBER));
+        // when(repository.getAllContactDetails()).thenReturn(ImmutableList.of(ANNAS_NUMBER));
 
         assertThat(report.getAllImportantNumbers(), contains(ANNAS_NUMBER.getPhoneNumber()));
     }

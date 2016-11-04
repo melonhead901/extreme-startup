@@ -46,7 +46,7 @@ public interface CustomerRepository {
         }
     }
 
-    @SqlUpdate("create table customers (id int primary key, name varchar(100), phonenumber varchar(15))")
+    @SqlUpdate("create table customers (id int primary key, name varchar(100))")
     void createCustomerTable();
 
     @SqlUpdate("create table phonenumbers (phonenumber varchar(15), customer_id int)")
@@ -59,10 +59,17 @@ public interface CustomerRepository {
     @Mapper(CustomerMapper.class)
     Customer getCustomer(@Bind("id") int id);
 
+    @SqlQuery("select * from customers left join phonenumbers on customers.id=phonenumbers.customer_id")
+    @Mapper(CustomerMapper.class)
+    List<Customer> getAllCustomers();
+
+
     /**
      * close with no args is used to close the connection
      */
     void close();
 
+    @SqlQuery("select * from phonenumbers left join customers on phonenumbers.customer_id=customers.id")
+    @Mapper(ContactDetailMapper.class)
     List<ContactDetail> getAllContactDetails();
 }

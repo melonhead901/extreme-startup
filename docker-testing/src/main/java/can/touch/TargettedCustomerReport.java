@@ -29,16 +29,37 @@ package can.touch;
 
 import com.google.common.collect.ImmutableList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TargettedCustomerReport {
-
-
+    private CustomerRepository repository;
 
     public TargettedCustomerReport(CustomerRepository repository) {
+        this.repository = repository;
     }
 
     public List<String> getAllImportantNumbers() {
-        return ImmutableList.of("12356");
+        List<ContactDetail> contactDetails = repository.getAllContactDetails();
+
+        List<String> out = new ArrayList<>();
+
+        for (ContactDetail detail : contactDetails) {
+            if (isPalindrome(detail.getName())) {
+                out.add(detail.getPhoneNumber());
+            }
+        }
+        return out;
+    }
+
+    private static boolean isPalindrome(String name) {
+        String lower = name.toLowerCase();
+
+        for (int i = 0; i < lower.length() / 2; i++) {
+            if (lower.charAt(i) != lower.charAt(lower.length() - i - 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
