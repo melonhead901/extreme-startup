@@ -18,7 +18,7 @@ public class QuestionAnswerer {
 
                 List<Integer> numberArgsList = new ArrayList<>();
                 for (String num : numberArgs) {
-                    numberArgsList.add(Integer.valueOf(num));
+                    numberArgsList.add(Integer.valueOf(num.trim()));
                 }
 
                 if (question.contains("largest")) {
