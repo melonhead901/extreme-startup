@@ -1,6 +1,6 @@
 package tell.dont.ask;
 
-public class TextMessageService {
+public class TextMessageService implements ContactService {
 
     public void sendTextReminderTo(String phoneNumber) {
     }

@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Created by rchew on 11/3/16.
  */
-public class PhoneNumber {
+public class PhoneNumber implements ContactMethod {
 
     private final String phoneNumber;
     private static final int PHONE_NUMBER_FULL_LENGTH = 11;
@@ -29,7 +29,9 @@ public class PhoneNumber {
         phoneService.callWithReminder(phoneNumber);
     }
 
-    public void remind(TextMessageService phoneService) {
+    @Override
+    public void remind(ContactService contactService) {
+        TextMessageService phoneService = (TextMessageService) contactService;
             if (isMobile()) {
                 sendTextReminder(phoneService);
             } else {
