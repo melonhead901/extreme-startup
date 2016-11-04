@@ -47,6 +47,11 @@ public class QuestionAnswerer {
 
 
             ///// END KELLEN
+            else if (question.contains("who")) {
+                if (question.contains("James Bond")) {
+                    out = doJamesBond(query);
+                }
+            }
         } else {
             out = String.format("Unknown query: '%s'", query);
         }
@@ -59,7 +64,7 @@ public class QuestionAnswerer {
         String[] split = line.split(" ");
         for (String str : split) {
             try {
-                if (new BigInteger(str).isProbablePrime(5)) {
+                if (new BigInteger(str).isProbablePrime(10)) {
                    return str;
                 }
             } catch (Exception expected) {
