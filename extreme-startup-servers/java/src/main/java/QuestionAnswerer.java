@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,11 @@ public class QuestionAnswerer {
                 ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
-                return squareAndCube(question);
+                out = squareAndCube(question);
+            }
+
+            else if (question.contains("prime")) {
+                out =  isPrime(question);
             }
 
 
@@ -48,6 +53,20 @@ public class QuestionAnswerer {
 
         System.out.println(out);
         return out;
+    }
+
+    private String isPrime(String line) {
+        String[] split = line.split(" ");
+        for (String str : split) {
+            try {
+                if (new BigInteger(str).isProbablePrime(5)) {
+                   return str;
+                }
+            } catch (Exception expected) {
+
+            }
+        }
+        return "none";
     }
 
     /// KELLEN
