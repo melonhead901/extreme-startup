@@ -29,9 +29,12 @@ public class QuestionAnswerer {
                 }
             } else if (question.contains("plus")) {
                 out = doAddition(question);
+            } else if (question.contains("multiplied by")) {
+                out = doMultiplication(question);
             }
 
-            ///// KELLEN
+
+                ///// KELLEN
 
             else if (question.contains("cube") && question.contains("square")) {
                 return squareAndCube(question);
@@ -81,5 +84,18 @@ public class QuestionAnswerer {
             }
         }
         return sum + "";
+    }
+
+    public String doMultiplication(String line) {
+        String[] split = line.split(" ");
+        int prod = 1;
+        for (String str : split) {
+            try {
+                prod *= Integer.valueOf(str);
+            } catch (NumberFormatException expected) {
+
+            }
+        }
+        return prod + "";
     }
 }
