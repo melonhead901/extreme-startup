@@ -8,6 +8,17 @@ public class QuestionAnswerer {
         if (query == null) {
             out = "received null query";
         } else if (query.contains(":")) {
+
+            List<Integer> intArgs = new ArrayList<>();
+            for (String word : query.split(" |,|:")) {
+                try {
+                    intArgs.add(Integer.valueOf(word));
+
+                } catch (Exception e) {
+
+                }
+            }
+
             String[] splitQuery = query.split(":");
             String queryHash = splitQuery[0];
             String question = splitQuery[1].trim();
@@ -93,6 +104,7 @@ public class QuestionAnswerer {
 
 
     public String isPrime(String line) {
+        System.out.println(line);
         String[] split = line.split(" |,");
         for (String str : split) {
             try {
@@ -144,6 +156,7 @@ public class QuestionAnswerer {
             second = first + temp;
         }
         return second + "";
+
     }
 
     /// END KELLEN
