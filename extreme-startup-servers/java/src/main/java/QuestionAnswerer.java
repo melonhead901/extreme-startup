@@ -12,9 +12,8 @@ public class QuestionAnswerer {
             String question = splitQuery[1].trim();
             if (question.equals("what is your name")) {
                 out = "The Great North";
-            } if (question.contains("which of the following numbers is")) {
-                String numbers = splitQuery[2].trim();
-                String[] numberArgs = splitQuery[2].split(",");
+            } else if (question.contains("which of the following numbers is")) {
+                String[] numberArgs = splitQuery[2].trim().split(",");
 
                 List<Integer> numberArgsList = new ArrayList<>();
                 for (String num : numberArgs) {
@@ -28,7 +27,10 @@ public class QuestionAnswerer {
                     }
                     out = Integer.toString(max);
                 }
+            } else if (question.contains("plus")) {
+                out = doAddition(question);
             }
+
         } else {
             out = String.format("Unknown query: '%s'", query);
         }
@@ -36,4 +38,16 @@ public class QuestionAnswerer {
         System.out.println(out);
         return out;
     }
+     public String doAddition(String line) {
+                String[] split = line.split(" ");
+                int sum = 0;
+                for (String str : split) {
+                    try {
+                        sum += Integer.valueOf(str);
+                    } catch (NumberFormatException expected) {
+
+                    }
+                }
+                return sum + "";
+            }
 }
