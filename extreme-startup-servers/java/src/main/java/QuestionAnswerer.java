@@ -57,7 +57,7 @@ public class QuestionAnswerer {
             } else if (question.contains("prime")) {
                 out = isPrime(question.concat(splitQuery[2]));
             } else if (question.contains("power")) {
-                out = power(question.concat(splitQuery[2]));
+                out = power(query);
             }
 
 
