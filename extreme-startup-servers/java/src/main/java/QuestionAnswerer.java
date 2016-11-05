@@ -87,16 +87,22 @@ public class QuestionAnswerer {
 
     private String power(String line) {
         String[] split = line.split(" |,");
+        List<Integer> lst = new ArrayList<>();
         for (String str : split) {
             try {
-                if (new BigInteger(str).isProbablePrime(10)) {
-                }
+                lst.add(Integer.valueOf(str));
             } catch (Exception expected) {
 
             }
         }
-        return "none";
-    }
+        if(lst.size() !=2){
+
+            return"none";
+        } else {
+            return Math.pow(lst.get(0), lst.get(1)) + "";
+        }
+
+}
 
     private String doSubtraction(String query) {
         return "none";
@@ -141,7 +147,7 @@ public class QuestionAnswerer {
 
     public String fibo(String line) {
         String[] str = line.split("[a-zA-Z, :]");
-       int fiboNum = 0;
+        int fiboNum = 0;
         for (String s : str) {
             if (s.length() > 0) {
                 fiboNum = Integer.valueOf(s);
