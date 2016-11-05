@@ -22,9 +22,7 @@ public class QuestionAnswerer {
             String[] splitQuery = query.split(":");
             String queryHash = splitQuery[0];
             String question = splitQuery[1].trim();
-            if (question.equals("what is your name")) {
-                out = "The Great North";
-            } else if (question.contains("which of the following numbers is")) {
+            if (question.contains("which of the following numbers is")) {
                 String[] numberArgs = splitQuery[2].trim().split(",");
 
                 List<Integer> numberArgsList = new ArrayList<>();
@@ -71,6 +69,8 @@ public class QuestionAnswerer {
                     if (question.contains("Euro")) {
                         out = "peseta";
                     }
+                } else if (question.equals("what is your name")) {
+                    out = "The Great North";
                 }
             } else if (question.contains("which")) {
                 if (question.contains("Eiffel")) {
