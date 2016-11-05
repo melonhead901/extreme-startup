@@ -22,13 +22,7 @@ public class QuestionAnswerer {
             String[] splitQuery = query.split(":");
             String queryHash = splitQuery[0];
             String question = splitQuery[1].trim();
-            if (question.contains("minus")) {
-                out = doSubtraction(query);
-            } else if (question.contains("plus")) {
-                out = doAddition(query);
-            } else if (query.contains("multiplied by")) {
-                out = doMultiplication(query);
-            } else if (query.contains("Fibonacci")) {
+            if (query.contains("Fibonacci")) {
                 out = fibo(query);
             }
 
@@ -56,6 +50,12 @@ public class QuestionAnswerer {
                     }
                 } else if (question.equals("what is your name")) {
                     out = "The Great North";
+                } else  if (question.contains("minus")) {
+                    out = doSubtraction(query);
+                } else if (question.contains("plus")) {
+                    out = doAddition(query);
+                } else if (query.contains("multiplied by")) {
+                    out = doMultiplication(query);
                 }
             } else if (question.contains("which")) {
                 if (question.contains("Eiffel")) {
