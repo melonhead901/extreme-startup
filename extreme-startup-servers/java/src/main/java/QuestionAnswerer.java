@@ -22,22 +22,7 @@ public class QuestionAnswerer {
             String[] splitQuery = query.split(":");
             String queryHash = splitQuery[0];
             String question = splitQuery[1].trim();
-            if (question.contains("which of the following numbers is")) {
-                String[] numberArgs = splitQuery[2].trim().split(",");
-
-                List<Integer> numberArgsList = new ArrayList<>();
-                for (String num : numberArgs) {
-                    numberArgsList.add(Integer.valueOf(num.trim()));
-                }
-
-                if (question.contains("largest")) {
-                    int max = 0;
-                    for (Integer num : numberArgsList) {
-                        max = (num > max) ? num : max;
-                    }
-                    out = Integer.toString(max);
-                }
-            } else if (question.contains("minus")) {
+            if (question.contains("minus")) {
                 out = doSubtraction(query);
             } else if (question.contains("plus")) {
                 out = doAddition(query);
@@ -75,6 +60,21 @@ public class QuestionAnswerer {
             } else if (question.contains("which")) {
                 if (question.contains("Eiffel")) {
                     out = "Paris";
+                } else if (question.contains("which of the following numbers is")) {
+                    String[] numberArgs = splitQuery[2].trim().split(",");
+
+                    List<Integer> numberArgsList = new ArrayList<>();
+                    for (String num : numberArgs) {
+                        numberArgsList.add(Integer.valueOf(num.trim()));
+                    }
+
+                    if (question.contains("largest")) {
+                        int max = 0;
+                        for (Integer num : numberArgsList) {
+                            max = (num > max) ? num : max;
+                        }
+                        out = Integer.toString(max);
+                    }
                 }
             }
         } else {
